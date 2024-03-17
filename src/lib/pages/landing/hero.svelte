@@ -14,8 +14,12 @@
         { text: "Augment", color: "#F08080" },
     ];
 
+    let contentContainer: HTMLDivElement;
     let wordsContainer: HTMLDivElement;
     let currentWord: number = -1;
+    let wordStyles = {
+        color: WORDS[0].color,
+    };
 
     function nextWord() {
         let lastWord: number = currentWord;
@@ -48,11 +52,14 @@
                             newWordContainer.style.display = "flex";
 
                             anime({
-                                targets: ".wordColor",
+                                targets: wordStyles,
                                 easing: "easeInOutCubic",
                                 duration: 500,
-                                fill: [WORDS[lastWord].color, WORDS[currentWord].color],
-                                backgroundColor: [WORDS[lastWord].color, WORDS[currentWord].color],
+                                color: [WORDS[lastWord].color, WORDS[currentWord].color],
+
+                                update: () => {
+                                    contentContainer.style.setProperty("--wordColor", wordStyles.color);
+                                },
                             });
 
                             anime({
@@ -82,8 +89,8 @@
     });
 </script>
 
-<div class="w-full h-screen relative [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:w-full [&>div]:h-full">
-    <div class="flex flex-col gap-10 items-center justify-center z-[1]">
+<div class="w-full h-screen relative [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:w-full [&>div]:h-full" style="--wordColor: {wordStyles.color};" bind:this={contentContainer}>
+    <div class="flex flex-col gap-7 md:gap-10 items-center justify-center z-[1]">
         <h1 class="flex flex-col justify-center items-center text-4xl md:text-5xl lg:text-6xl font-semibold md:font-bold tracking-tight select-none">
             <span class="w-full flex">
                 <div class="relative" bind:this={wordsContainer}>
@@ -95,29 +102,29 @@
                         </span>
                     {/each}
                 </div>
-                your user feedback
+                your user<span class="hidden sm:inline-block">feedback</span>
             </span>
 
-            <span>with Atheria.</span>
+            <span><span class="inline-block sm:hidden">feedback</span> with Atheria.</span>
         </h1>
 
-        <p class="text-base md:text-xl max-w-3xl">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
+        <p class="text-lg md:text-xl max-w-[80%] md:max-w-[80%] lg:max-w-3xl">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
 
-        <div class="flex justify-center items-center gap-6">
-            <a class="primary" href="#a">Get started</a>
-            <a class="" href="#b">Learn more</a>
+        <div class="flex justify-center items-center gap-2">
+            <a class="primary !bg-black !border-[var(--wordColor)]" href="register">Get started</a>
+            <a class="secondary" href="#b">Learn more</a>
         </div>
     </div>
 
     <div>
-        <Rating rating={2} delay={1} size={1} style="top: 11.5%; left: 21.8%; fill: {WORDS[0].color};" />
-        <Rating rating={4} delay={0} size={1.2} style="top: 79%; left: 11.4%; fill: {WORDS[0].color};" />
-        <Rating rating={2} delay={0.5} size={0.9} style="top: 77.4%; right: 21%; fill: {WORDS[0].color};" />
-        <Rating rating={4} delay={0.25} size={1.4} style="top: 15%; right: 15.2%; fill: {WORDS[0].color};" />
+        <Rating rating={4} delay={1} size={1} style="top: 11.5%; left: 21.8%;;" />
+        <Rating rating={3} delay={0} size={1.2} style="top: 79%; left: 11.4%;" />
+        <Rating rating={2} delay={2} size={0.9} style="top: 77.4%; right: 21%;" />
+        <Rating rating={5} delay={0.25} size={1.4} style="top: 15%; right: 15.2%;" />
 
-        <Thought delay={0.7} style="width: 20%; top: 20%; left: 40%; background-color: {WORDS[0].color};" />
-        <Thought delay={0.7} style="width: 13%; top: 62.3%; left: 5%; background-color: {WORDS[0].color};" />
-        <Thought delay={0.7} style="width: 8%; top: 53.3%; right: 5%; background-color: {WORDS[0].color};" />
+        <Thought delay={1} style="width: 20%; top: 20%; left: 40%;" />
+        <Thought delay={2} style="width: 13%; top: 62.3%; left: 5%;" />
+        <Thought delay={3} style="width: 8%; top: 53.3%; right: 5%;" />
     </div>
 </div>
 

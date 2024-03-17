@@ -3,6 +3,6 @@
     export let delay: number = 0;
 </script>
 
-<div class="float wordColor absolute h-10 rounded-full bg-slate-700 flex justify-center items-center" style={style.concat(`--delay: ${delay}s;`)}>
+<div class="float absolute h-10 rounded-full bg-[var(--wordColor)] flex justify-center items-center" style={style.concat(`--delay: ${delay}s;`)}>
     <slot />
 </div>

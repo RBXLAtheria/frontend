@@ -31,7 +31,7 @@ export default {
                 primary: "#050505",
                 secondary: "#212121",
                 button: {
-                    primary: "#98FB98",
+                    primary: "#ff4747",
                     secondary: "#fff837",
                 },
             },
@@ -46,6 +46,7 @@ export default {
 
             borderRadius: {
                 primary: "10px",
+                hover: "25px",
             },
         },
     },

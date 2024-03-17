@@ -59,17 +59,27 @@
 
 @layer base {
     body {
-        @apply bg-primary text-center text-primary font-balooBhaijaan2;
+        @apply bg-primary text-primary text-center font-balooBhaijaan2 overflow-hidden;
+    }
+
+    .pageViewport {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: auto;
+    }
+
+    .pageViewport::-webkit-scrollbar {
+        @apply hidden;
     }
 }
 
 @layer components {
     button.primary,
     a.primary {
-        background: rgba(0, 0, 0, 0.25);
-        backdrop-filter: blur(11px);
-        -webkit-backdrop-filter: blur(11px);
+        @apply border-primary font-semibold rounded-primary px-6 py-3 backdrop-blur-md bg-button-primary bg-opacity-25 transition-[border-radius] duration-300 hover:rounded-hover;
+    }
 
-        @apply border-primary font-semibold rounded-primary px-6 py-3;
+    a.secondary {
+        @apply font-semibold px-6 py-3;
     }
 }
