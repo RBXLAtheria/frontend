@@ -2,6 +2,7 @@
     import Header from "$lib/pages/landing/header.svelte";
     import Hero from "$lib/pages/landing/hero.svelte";
     import Stats from "$lib/pages/landing/stats.svelte";
+    import IssuesWebhooks from "$lib/pages/landing/issues/webhooks.svelte";
 </script>
 
 <svelte:head>
@@ -14,3 +15,12 @@
 </div>
 
 <Stats />
+
+<IssuesWebhooks />
+
+<style lang="postcss">
+    :global(.section div p .highlight) {
+        color: var(--sectionColor);
+        text-shadow: var(--sectionColorTransparent) 0 0 100px;
+    }
+</style>
