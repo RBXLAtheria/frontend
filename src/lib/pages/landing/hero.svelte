@@ -102,7 +102,7 @@
                         </span>
                     {/each}
                 </div>
-                your user<span class="hidden sm:inline-block">feedback</span>
+                your user<span class="hidden sm:inline-block">&nbsp;feedback</span>
             </span>
 
             <span><span class="inline-block sm:hidden">feedback</span> with Atheria.</span>
