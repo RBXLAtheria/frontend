@@ -22,7 +22,7 @@
         <p class="text-lg">{description}</p>
 
         <div class="flex justify-center items-center gap-2">
-            <a class="primary !bg-black !border-[var(--sectionColor)] !text-base" href="register">Get started</a>
+            <a class="primary !bg-black !border-[var(--sectionColor)] !text-base" href="/get-started">Get started</a>
             <a class="secondary !text-base" href="#b">Learn more</a>
         </div>
     </div>
