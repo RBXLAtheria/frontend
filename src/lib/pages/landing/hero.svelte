@@ -27,7 +27,6 @@
 
         if (!WORDS[lastWord]) return;
 
-        const oldWordContainer: HTMLSpanElement = wordsContainer.querySelector(`span[data-index="${lastWord}"]`)!;
         const oldLetterAnimation: AnimationControls = animate(
             `span[data-index="${lastWord}"] span`,
             {
@@ -40,10 +39,10 @@
                 delay: stagger(0.1),
             }
         );
-        console.log("starting");
+
         await oldLetterAnimation.finished;
-        console.log("stopping");
-        oldWordContainer.style.display = "none";
+
+        (wordsContainer.querySelector(`span[data-index="${lastWord}"]`) as HTMLDivElement).style.display = "none";
 
         const newWordContainer: HTMLSpanElement = wordsContainer.querySelector(`span[data-index="${currentWord}"]`)!;
         newWordContainer.style.display = "flex";
