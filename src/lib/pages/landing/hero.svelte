@@ -110,7 +110,7 @@
         <p class="text-lg md:text-xl max-w-[80%] md:max-w-[80%] lg:max-w-3xl">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
 
         <div class="flex justify-center items-center gap-2">
-            <a class="primary matchHeroColor !bg-black !border-[var(--wordColor)]" href="register">Get started</a>
+            <a class="primary matchHeroColor !transition-[border-radius,border-color] !bg-black !border-[var(--wordColor)]" href="register">Get started</a>
             <a class="secondary" href="#b">Learn more</a>
         </div>
     </div>
