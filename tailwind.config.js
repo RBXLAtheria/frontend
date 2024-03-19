@@ -48,6 +48,10 @@ export default {
                 primary: "10px",
                 hover: "25px",
             },
+
+            transitionTimingFunction: {
+                cubic: "cubic-bezier(0.65, 0, 0.35, 1)",
+            },
         },
     },
     plugins: [],
