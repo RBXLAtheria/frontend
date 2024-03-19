@@ -3,6 +3,7 @@
     import Hero from "$lib/pages/landing/hero.svelte";
     import Stats from "$lib/pages/landing/stats.svelte";
     import IssuesWebhooks from "$lib/pages/landing/issues/webhooks.svelte";
+    import IssuesOrganization from "$lib/pages/landing/issues/organization.svelte";
 </script>
 
 <svelte:head>
@@ -17,6 +18,7 @@
 <Stats />
 
 <IssuesWebhooks />
+<IssuesOrganization />
 
 <style lang="postcss">
     :global(.section div p .highlight) {
