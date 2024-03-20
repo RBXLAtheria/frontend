@@ -7,7 +7,7 @@
 
 <span {id} class="relative" />
 
-<div class="section flex flex-col justify-center md:justify-between items-center w-full h-screen px-10 relative md:flex-row" style="--sectionColor: {color}; --sectionColorTransparent: {color}80;" id="#{id}">
+<div class="section flex flex-col justify-center md:justify-between items-center w-full h-screen px-10 relative md:flex-row" style="--sectionColor: {color}; --sectionColorTransparent: {color}80;" id="section-{id}">
     <div class="w-full md:w-[50%] h-full text-center md:text-left flex flex-col justify-center items-center md:items-start gap-5 md:gap-7 md:pl-[10%] 2xl:pl-[15%]">
         <p class="scrollAnimation w-full text-4xl font-semibold md:font-bold tracking-tight">{@html title}</p>
 
@@ -19,5 +19,7 @@
         </div>
     </div>
 
-    <slot />
+    <div class="relative flex-grow h-full">
+        <slot />
+    </div>
 </div>
