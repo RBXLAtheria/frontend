@@ -37,6 +37,7 @@
         { name: SYSTEM_NAME, message: "[LaggyLarry] The server performance is terrible! It's ruining the gameplay experience.", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[GripeyGabby] I've encountered the same bug for weeks now. When will it be fixed?", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[SkepticalSally] How about adding a feature to auto-sort inventory? It would save a lot of time.", color: SYSTEM_COLOR },
+        { name: "Charlie", message: "This a good suggestion! To bad well lose it in this mess...", color: "#5733FF" },
         { name: SYSTEM_NAME, message: "[AnxiousAndy] NPCs are spawning inside walls, making quests impossible to complete.", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[GrumblingGary] Lack of communication about bug fixes is frustrating. Are devs even listening?", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[UnhappyUrsula] Can we get more frequent updates on bug fixes and patch notes?", color: SYSTEM_COLOR },
