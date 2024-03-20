@@ -14,7 +14,7 @@
         <p class="scrollAnimation text-lg">{description}</p>
 
         <div class="scrollAnimation flex justify-center items-center gap-2">
-            <a class="primary !bg-black !border-[var(--sectionColor)] !text-base" href="/get-started">Get started</a>
+            <a class="primary !bg-black !border-[--sectionColor] !text-base" href="/get-started">Get started</a>
             <a class="secondary !text-base" href="#b">Learn more</a>
         </div>
     </div>
