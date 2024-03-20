@@ -35,22 +35,24 @@
     }
 
     :global(.float) {
-        animation: hover infinite 6s ease-in-out var(--delay);
-        transform: translateY(0px);
-        will-change: transform;
+        will-change: translate rotate;
+        animation: float infinite 6s ease-in-out var(--delay);
     }
 
-    @keyframes hover {
+    @keyframes float {
         0% {
-            transform: translateY(0px);
+            rotate: 0deg;
+            translate: 0px 0px;
         }
 
         50% {
-            transform: translateY(10px);
+            rotate: var(--rotation);
+            translate: 0px 10px;
         }
 
         100% {
-            transform: translateY(0px);
+            rotate: 0deg;
+            translate: 0px 0px;
         }
     }
 </style>
