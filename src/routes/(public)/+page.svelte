@@ -4,6 +4,7 @@
     import Stats from "$lib/pages/landing/stats.svelte";
     import IssuesWebhooks from "$lib/pages/landing/issues/webhooks.svelte";
     import IssuesOrganization from "$lib/pages/landing/issues/organization.svelte";
+    import FeaturesDataControl from "$lib/pages/landing/features/dataControl.svelte";
     import { onMount } from "svelte";
     import { inView, animate, stagger } from "motion";
 
@@ -60,6 +61,8 @@
 
 <IssuesWebhooks />
 <IssuesOrganization />
+
+<FeaturesDataControl />
 
 <style lang="postcss">
     :global(main) {
