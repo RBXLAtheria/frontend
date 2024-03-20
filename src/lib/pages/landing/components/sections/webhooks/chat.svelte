@@ -5,15 +5,15 @@
     type messageWithTime = { name: string; message: string; color: string; time: string };
     type message = { name: string; message: string; color: string };
 
-    export let style: string = "";
-    export let visibleMessages: number = 0;
+    export let visibleMessages: number = 5;
+    export let speed: number = 3500;
     export let messages: message[] = [];
     export let name: string = "";
+    export let currentTime: Date;
 
     let chatContainer: HTMLDivElement;
     let currentMessages: messageWithTime[] = [];
     let topMessage: number = 0;
-    let lastMessageTime: Date;
 
     function updateMessage(index: number, message: messageWithTime) {
         currentMessages[index] = message;
@@ -35,7 +35,7 @@
     }
 
     function nextMessage() {
-        topMessage = topMessage >= messages.length ? 0 : topMessage + 1;
+        topMessage = topMessage >= messages.length - 1 ? 0 : topMessage + 1;
 
         let newMessages: messageWithTime[] = [];
 
@@ -44,11 +44,8 @@
 
             if (index === visibleMessages - 1) {
                 const currentIndex: number = topMessage + index;
-                message = messages[currentIndex > messages.length ? 0 + -(currentIndex - messages.length) : currentIndex] as messageWithTime;
-
-                let time: Date = new Date(lastMessageTime.getTime() + 60000);
-                message["time"] = time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
-                lastMessageTime = time;
+                message = messages[currentIndex > messages.length - 1 ? 0 + Math.abs(currentIndex - messages.length) : currentIndex] as messageWithTime;
+                message["time"] = currentTime.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
             } else {
                 message = currentMessages[index + 1];
             }
@@ -62,24 +59,15 @@
     }
 
     onMount(() => {
-        const startTime: Date = new Date();
-
         for (let index: number = 0; index < visibleMessages; index++) {
             let message: messageWithTime = messages[index] as messageWithTime;
-
-            let time: Date = new Date(startTime.getTime() - 60000 * (visibleMessages - index));
-            message["time"] = time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
-
-            if (index === visibleMessages - 1) {
-                lastMessageTime = time;
-            }
-
+            message["time"] = new Date(currentTime.getTime() - 60000 * (visibleMessages - index)).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
             updateMessage(index, message);
         }
 
         let cycleInterval: number | null;
         const stopMessagesContainerObserver: VoidFunction = inView(chatContainer, () => {
-            cycleInterval = setInterval(nextMessage, 3500);
+            cycleInterval = setInterval(nextMessage, speed);
 
             return () => {
                 if (!cycleInterval) return;
@@ -99,7 +87,7 @@
     });
 </script>
 
-<div class="w-[50%] absolute" {style}>
+<div class="chat w-[50%] absolute" data-name={name}>
     <div class="scrollAnimation bg-secondary-950 select-none rounded-primary overflow-hidden border-primary shadow-xl" bind:this={chatContainer}>
         <div class="py-3 flex justify-center items-center gap-2 w-full">
             <p class="text-3xl text-primary-700">#</p>

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import Section from "../components/section.svelte";
     import Chat from "../components/sections/webhooks/chat.svelte";
 
@@ -37,7 +38,7 @@
         { name: SYSTEM_NAME, message: "[LaggyLarry] The server performance is terrible! It's ruining the gameplay experience.", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[GripeyGabby] I've encountered the same bug for weeks now. When will it be fixed?", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[SkepticalSally] How about adding a feature to auto-sort inventory? It would save a lot of time.", color: SYSTEM_COLOR },
-        { name: "Charlie", message: "This a good suggestion! To bad well lose it in this mess...", color: "#5733FF" },
+        { name: "Charlie", message: "This a good suggestion! To bad we will lose it in this mess...", color: "#5733FF" },
         { name: SYSTEM_NAME, message: "[AnxiousAndy] NPCs are spawning inside walls, making quests impossible to complete.", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[GrumblingGary] Lack of communication about bug fixes is frustrating. Are devs even listening?", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[UnhappyUrsula] Can we get more frequent updates on bug fixes and patch notes?", color: SYSTEM_COLOR },
@@ -46,6 +47,21 @@
         { name: SYSTEM_NAME, message: "[BuggyBobby] Dialogue options are glitched, making it impossible to progress in quests.", color: SYSTEM_COLOR },
         { name: SYSTEM_NAME, message: "[SnippySamantha] Feedback seems to be ignored. Is anyone even reading it?", color: SYSTEM_COLOR },
     ];
+
+    let lastTime: Date = new Date();
+    $: currentTime = new Date();
+
+    onMount(() => {
+        let timeUpdateInterval: number = setInterval(() => {
+            let newTime: Date = new Date(lastTime.getTime() + 60000);
+            lastTime = currentTime;
+            currentTime = newTime;
+        }, 3000);
+
+        return () => {
+            clearInterval(timeUpdateInterval);
+        };
+    });
 </script>
 
 <Section id="issues-webhooks" color="#7289DA" title={`Long gone are the days of<br><span class="highlight">Discord webhooks.</span>`} description="Using Discord webhooks for feedback poses challenges as your game grows. They struggle to handle increased feedback, making collaboration and insight gathering difficult. Atheria simplifies this process, offering a centralized platform tailored for gaming. Easily collect, organize, and analyze feedback in near real-time, fostering teamwork and improvement. Switch to Atheria to overcome Discord webhook limitations and unlock new opportunities for your game.">
@@ -56,7 +72,35 @@
         </svg>
     </div>
 
-    <Chat name="Developers" visibleMessages={5} style="z-index: 2; top: 18%; left: 12%;" messages={DEVELOPER_CHAT_MESSAGES} />
+    <div class="w-full h-[85vh] lg:h-full">
+        <Chat name="Developers" messages={DEVELOPER_CHAT_MESSAGES} {currentTime} />
 
-    <Chat name="Feedback" visibleMessages={5} style="z-index: 1; bottom: 18%; right: 0%;" messages={FEEDBACK_CHAT_MESSAGES} />
+        <Chat name="Feedback" speed={1000} messages={FEEDBACK_CHAT_MESSAGES} {currentTime} />
+    </div>
 </Section>
+
+<style lang="postcss">
+    :global(#section-issues-webhooks .chat[data-name="Developers"]) {
+        z-index: 2;
+        left: 3%;
+        top: 8%;
+    }
+
+    :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
+        z-index: 1;
+        right: 3%;
+        bottom: 8%;
+    }
+
+    @media (min-width: 1024px) {
+        :global(#section-issues-webhooks .chat[data-name="Developers"]) {
+            left: 12%;
+            top: 16%;
+        }
+
+        :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
+            right: 0%;
+            bottom: 16%;
+        }
+    }
+</style>
