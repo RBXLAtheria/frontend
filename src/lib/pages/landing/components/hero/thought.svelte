@@ -22,12 +22,12 @@
             {
                 easing: easeInOutCubic,
                 duration: 1,
-                delay: delay,
+                delay: delay / 2,
             }
         );
     });
 </script>
 
-<div class="float matchHeroColor absolute h-10 rounded-full bg-[--wordColor] flex justify-center items-center" style={style.concat(`--delay: ${delay}s; --rotation1: ${rotation1}deg; --rotation2: ${rotation2}deg;`)} bind:this={thoughtContainer}>
+<div class="float matchHeroColor absolute h-10 rounded-full bg-[--wordColor] flex justify-center items-center" style={style.concat(`opacity: 0; --delay: ${delay}s; --rotation1: ${rotation1}deg; --rotation2: ${rotation2}deg;`)} bind:this={thoughtContainer}>
     <slot />
 </div>
