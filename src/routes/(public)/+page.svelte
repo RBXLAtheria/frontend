@@ -41,17 +41,17 @@
 
     @keyframes float {
         0% {
-            rotate: 0deg;
+            rotate: var(--rotation1);
             translate: 0px 0px;
         }
 
         50% {
-            rotate: var(--rotation);
+            rotate: var(--rotation2);
             translate: 0px 10px;
         }
 
         100% {
-            rotate: 0deg;
+            rotate: var(--rotation1);
             translate: 0px 0px;
         }
     }
