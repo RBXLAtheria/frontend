@@ -2,7 +2,7 @@
     import Rating from "./components/hero/rating.svelte";
     import Thought from "./components/hero/thought.svelte";
     import { onMount } from "svelte";
-    import { animate, stagger, spring, type EasingGenerator, type AnimationControls } from "motion";
+    import { animate, timeline, stagger, spring, type EasingGenerator, type AnimationControls, type TimelineDefinition } from "motion";
     import { easeInOutCubic } from "$lib/easings";
 
     const WORDS: { text: string; color: string }[] = [
@@ -42,35 +42,42 @@
 
         await oldLetterAnimation.finished;
 
-        (wordsContainer.querySelector(`span[data-index="${lastWord}"]`) as HTMLDivElement).style.display = "none";
+        const oldWordContainer: HTMLSpanElement = wordsContainer.querySelector(`span[data-index="${lastWord}"]`)!;
+        let oldWordContainerSize: number = oldWordContainer.clientWidth;
+        oldWordContainer.style.display = "none";
 
         const newWordContainer: HTMLSpanElement = wordsContainer.querySelector(`span[data-index="${currentWord}"]`)!;
         newWordContainer.style.display = "flex";
 
         contentContainer.style.setProperty("--wordColor", WORDS[currentWord].color);
 
-        animate(
-            `span[data-index="${currentWord}"] span`,
-            {
-                opacity: [0, 1],
-            },
+        timeline(
+            [
+                [
+                    `span[data-index="${currentWord}"] span`,
+                    {
+                        opacity: [0, 1],
+                    },
+                    {
+                        easing: easeInOutCubic,
+                        duration: 0.2,
+                        delay: stagger(0.1),
+                    },
+                ],
+                [
+                    wordsContainer,
+                    {
+                        width: [`${oldWordContainerSize}px`, `${newWordContainer.clientWidth}px`],
+                    },
+                    {
+                        at: "<",
+                        easing: wordContainerAnimationSpring,
+                        duration: 0.5 * (newWordContainer.querySelectorAll("span").length - 1),
+                    },
+                ],
+            ] as TimelineDefinition,
             {
                 autoplay: true,
-                easing: easeInOutCubic,
-                duration: 0.2,
-                delay: stagger(0.1),
-            }
-        );
-
-        animate(
-            wordsContainer,
-            {
-                width: `${newWordContainer.clientWidth}px`,
-            },
-            {
-                autoplay: true,
-                easing: wordContainerAnimationSpring,
-                duration: 0.5 * (newWordContainer.querySelectorAll("span").length - 1),
             }
         );
     }
@@ -80,6 +87,7 @@
         wordsContainer.style.width = `${wordContainer.clientWidth}px`;
 
         const cycleInterval: number = setInterval(nextWord, 5000);
+        nextWord();
 
         return () => {
             clearInterval(cycleInterval);
