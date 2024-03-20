@@ -120,9 +120,9 @@
         <Rating rating={2} delay={2} size={0.9} style="top: 77.4%; right: 21%;" />
         <Rating rating={5} delay={0.25} size={1.4} style="top: 15%; right: 15.2%;" />
 
-        <Thought delay={1} style="width: 20%; top: 20%; left: 40%;" />
-        <Thought delay={2} style="width: 13%; top: 62.3%; left: 5%;" />
-        <Thought delay={3} style="width: 8%; top: 53.3%; right: 5%;" />
+        <Thought delay={1} rotation={1} style="width: 20%; top: 20%; left: 40%;" />
+        <Thought delay={2} rotation={-1} style="width: 13%; top: 62.3%; left: 5%;" />
+        <Thought delay={3} rotation={-2} style="width: 8%; top: 53.3%; right: 5%;" />
     </div>
 </div>
 
