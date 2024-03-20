@@ -134,7 +134,7 @@
 
             <div class="flex flex-col gap-5 justify-center items-center p-5 pt-0">
                 {#each Array(VISIBLE_MESSAGES) as _value, index}
-                    <div class="w-full flex justify-start items-center gap-4 text-left" data-index={index}>
+                    <div class="w-full flex justify-start items-start gap-3 text-left" data-index={index}>
                         <div class="icon h-12 aspect-square rounded-full" />
 
                         <div class="w-full overflow-hidden">
