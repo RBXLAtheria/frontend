@@ -4,6 +4,36 @@
     import Stats from "$lib/pages/landing/stats.svelte";
     import IssuesWebhooks from "$lib/pages/landing/issues/webhooks.svelte";
     import IssuesOrganization from "$lib/pages/landing/issues/organization.svelte";
+    import { onMount } from "svelte";
+    import { inView, animate, stagger } from "motion";
+
+    onMount(() => {
+        const stopSectionObserver: VoidFunction = inView(
+            ".section",
+            (info: IntersectionObserverEntry) => {
+                animate(
+                    info.target.querySelectorAll(".scrollAnimation"),
+                    {
+                        opacity: [0, 1],
+                        x: ["-20px", "0px"],
+                        y: ["20px", "0px"],
+                    },
+                    {
+                        duration: 1,
+                        easing: [0.17, 0.55, 0.55, 1],
+                        delay: stagger(0.3),
+                    }
+                );
+            },
+            {
+                margin: "0px 0px -250px 0px",
+            }
+        );
+
+        return () => {
+            stopSectionObserver();
+        };
+    });
 </script>
 
 <svelte:head>
