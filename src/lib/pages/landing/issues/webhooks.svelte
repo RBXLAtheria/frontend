@@ -32,8 +32,6 @@
     let currentMessages: messageWithTime[] = [];
     let topMessage: number = 0;
     let lastMessageTime: Date;
-    let currentFeedbackCountMessages: number = 0;
-    $: feedbackCount = {} as feedbackCount;
 
     function updateMessage(index: number, message: messageWithTime) {
         currentMessages[index] = message;
@@ -58,7 +56,6 @@
         topMessage = topMessage >= MESSAGES.length ? 0 : topMessage + 1;
 
         let newMessages: messageWithTime[] = [];
-        let newFeedbackCount: feedbackCount = {};
 
         for (let index: number = 0; index < VISIBLE_MESSAGES; index++) {
             let message: messageWithTime;
@@ -70,16 +67,8 @@
                 let time: Date = new Date(lastMessageTime.getTime() + 60000);
                 message["time"] = time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
                 lastMessageTime = time;
-
-                if (Math.random() > 0.6 && currentFeedbackCountMessages < 2) {
-                    newFeedbackCount[index] = Math.floor(Math.random() * 15 + 5);
-                }
             } else {
                 message = currentMessages[index + 1];
-
-                if (feedbackCount[index + 1]) {
-                    newFeedbackCount[index] = feedbackCount[index + 1];
-                }
             }
 
             newMessages[index] = message;
@@ -88,9 +77,6 @@
         for (let index: number = 0; index < newMessages.length; index++) {
             updateMessage(index, newMessages[index]);
         }
-
-        feedbackCount = newFeedbackCount;
-        currentFeedbackCountMessages = Object.keys(feedbackCount).length;
     }
 
     onMount(() => {
@@ -160,10 +146,6 @@
                             <p class="message text-primary-600 leading-tight"></p>
                         </div>
                     </div>
-
-                    {#if feedbackCount[index]}
-                        <p class="w-full text-sm text-primary-600 leading-none">{feedbackCount[index]}+ new suggestions</p>
-                    {/if}
                 {/each}
             </div>
         </div>
