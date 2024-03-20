@@ -8,8 +8,19 @@
     import { inView, animate, stagger } from "motion";
 
     onMount(() => {
+        const sections: NodeListOf<HTMLDivElement> = document.querySelectorAll(".section");
+
+        sections.forEach((section: HTMLDivElement) => {
+            const scrollAnimationObjects: NodeListOf<HTMLElement> = section.querySelectorAll(".scrollAnimation");
+
+            scrollAnimationObjects.forEach((element: HTMLElement) => {
+                element.style.opacity = "0";
+                element.style.transform = "translateX(-20px) translateY(20px)";
+            });
+        });
+
         const stopSectionObserver: VoidFunction = inView(
-            ".section",
+            sections,
             (info: IntersectionObserverEntry) => {
                 animate(
                     info.target.querySelectorAll(".scrollAnimation"),
@@ -26,7 +37,7 @@
                 );
             },
             {
-                margin: "0px 0px -250px 0px",
+                margin: "0px 0px -400px 0px",
             }
         );
 
