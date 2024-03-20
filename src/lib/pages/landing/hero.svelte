@@ -33,7 +33,6 @@
                 opacity: [1, 0],
             },
             {
-                autoplay: true,
                 easing: easeInOutCubic,
                 duration: 0.2,
                 delay: stagger(0.1),
@@ -51,35 +50,30 @@
 
         contentContainer.style.setProperty("--wordColor", WORDS[currentWord].color);
 
-        timeline(
+        timeline([
             [
-                [
-                    `span[data-index="${currentWord}"] span`,
-                    {
-                        opacity: [0, 1],
-                    },
-                    {
-                        easing: easeInOutCubic,
-                        duration: 0.2,
-                        delay: stagger(0.1),
-                    },
-                ],
-                [
-                    wordsContainer,
-                    {
-                        width: [`${oldWordContainerSize}px`, `${newWordContainer.clientWidth}px`],
-                    },
-                    {
-                        at: "<",
-                        easing: wordContainerAnimationSpring,
-                        duration: 0.5 * (newWordContainer.querySelectorAll("span").length - 1),
-                    },
-                ],
-            ] as TimelineDefinition,
-            {
-                autoplay: true,
-            }
-        );
+                `span[data-index="${currentWord}"] span`,
+                {
+                    opacity: [0, 1],
+                },
+                {
+                    easing: easeInOutCubic,
+                    duration: 0.2,
+                    delay: stagger(0.1),
+                },
+            ],
+            [
+                wordsContainer,
+                {
+                    width: [`${oldWordContainerSize}px`, `${newWordContainer.clientWidth}px`],
+                },
+                {
+                    at: "<",
+                    easing: wordContainerAnimationSpring,
+                    duration: 0.5 * (newWordContainer.querySelectorAll("span").length - 1),
+                },
+            ],
+        ] as TimelineDefinition);
     }
 
     onMount(() => {
@@ -101,7 +95,7 @@
             <span class="w-full flex justify-center">
                 <div class="w-[303.59px] relative" bind:this={wordsContainer}>
                     {#each WORDS as word, index}
-                        <span class="w-fit absolute top-0 left-0 {index === 0 ? 'flex' : 'hidden'}" style="color: {word.color}; text-shadow: {word.color}80 0 0 100px;" data-index={index}>
+                        <span class="w-fit absolute top-0 left-0 {index !== 0 ? 'hidden' : ''}" style="color: {word.color}; text-shadow: {word.color}80 0 0 100px;" data-index={index}>
                             {#each [...word.text.split(""), "&nbsp;"] as letter}
                                 <span>{@html letter}</span>
                             {/each}
