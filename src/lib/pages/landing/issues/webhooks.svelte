@@ -1,15 +1,8 @@
 <script lang="ts">
     import Section from "../components/section.svelte";
-    import { onMount } from "svelte";
-    import { inView } from "motion";
+    import Chat from "../components/sections/webhooks/chat.svelte";
 
-    type message = { name: string; message: string; color: string };
-    type messageWithTime = { name: string; message: string; color: string; time: string };
-    type feedbackCount = { [key: number]: number };
-
-    const VISIBLE_MESSAGES: number = 5;
-
-    const MESSAGES: message[] = [
+    const DEVELOPER_CHAT_MESSAGES = [
         { name: "Alice", message: "We sure are getting a lot of feedback!", color: "#FF5733" },
         { name: "Bob", message: "I'm having trouble searching through all of this feedback though...", color: "#33FF57" },
         { name: "Charlie", message: "I know! I saw a really cool suggestion a minute ago but now it's been lost.", color: "#5733FF" },
@@ -28,93 +21,30 @@
         { name: "Charlie", message: "It's also not scaling very well. As more messages come in, it's getting harder to find specific stuff.", color: "#5733FF" },
     ];
 
-    let messagesContainer: HTMLDivElement;
-    let currentMessages: messageWithTime[] = [];
-    let topMessage: number = 0;
-    let lastMessageTime: Date;
-
-    function updateMessage(index: number, message: messageWithTime) {
-        currentMessages[index] = message;
-
-        const messageContainer: HTMLDivElement = messagesContainer.querySelector(`div[data-index="${index}"]`)!;
-
-        const iconContainer: HTMLDivElement = messageContainer.querySelector("div.icon")!;
-        iconContainer.style.backgroundColor = message.color;
-
-        const nameLabel: HTMLParagraphElement = messageContainer.querySelector("p.name")!;
-        nameLabel.style.color = message.color;
-        nameLabel.innerText = message.name;
-
-        const timeLabel: HTMLParagraphElement = messageContainer.querySelector("p.time")!;
-        timeLabel.innerText = message.time;
-
-        const messageLabel: HTMLParagraphElement = messageContainer.querySelector("p.message")!;
-        messageLabel.innerText = message.message;
-    }
-
-    function nextMessage() {
-        topMessage = topMessage >= MESSAGES.length ? 0 : topMessage + 1;
-
-        let newMessages: messageWithTime[] = [];
-
-        for (let index: number = 0; index < VISIBLE_MESSAGES; index++) {
-            let message: messageWithTime;
-
-            if (index === VISIBLE_MESSAGES - 1) {
-                const currentIndex: number = topMessage + index;
-                message = MESSAGES[currentIndex > MESSAGES.length ? 0 + -(currentIndex - MESSAGES.length) : currentIndex] as messageWithTime;
-
-                let time: Date = new Date(lastMessageTime.getTime() + 60000);
-                message["time"] = time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
-                lastMessageTime = time;
-            } else {
-                message = currentMessages[index + 1];
-            }
-
-            newMessages[index] = message;
-        }
-
-        for (let index: number = 0; index < newMessages.length; index++) {
-            updateMessage(index, newMessages[index]);
-        }
-    }
-
-    onMount(() => {
-        const startTime: Date = new Date();
-
-        for (let index: number = 0; index < VISIBLE_MESSAGES; index++) {
-            let message: messageWithTime = MESSAGES[index] as messageWithTime;
-
-            let time: Date = new Date(startTime.getTime() - 60000 * (VISIBLE_MESSAGES - index));
-            message["time"] = time.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true });
-
-            if (index === VISIBLE_MESSAGES - 1) {
-                lastMessageTime = time;
-            }
-
-            updateMessage(index, message);
-        }
-
-        let cycleInterval: number | null;
-        const stopMessagesContainerObserver: VoidFunction = inView(messagesContainer, () => {
-            cycleInterval = setInterval(nextMessage, 3500);
-
-            return () => {
-                if (!cycleInterval) return;
-
-                clearInterval(cycleInterval);
-                cycleInterval = null;
-            };
-        });
-
-        return () => {
-            stopMessagesContainerObserver();
-
-            if (cycleInterval) {
-                clearInterval(cycleInterval);
-            }
-        };
-    });
+    const SYSTEM_NAME: string = "System";
+    const SYSTEM_COLOR: string = "var(--sectionColor)";
+    const FEEDBACK_CHAT_MESSAGES = [
+        { name: SYSTEM_NAME, message: "[GrumpyGamer123] My character keeps getting stuck in walls! It's ruining my immersion!", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[FrustratedFred] I reported a game-breaking bug two weeks ago and it's still not fixed!", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[AnnoyedAvocado] Can we have an option to skip cutscenes? They're way too long!", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[BuggedOutBetsy] The quest NPC disappeared and now I can't progress. Please fix ASAP!", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[WhiningWally] There's no response to my bug reports! Are they even being looked at?", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[GlitchyGina] Every time I try to open my inventory, the items duplicate. This is game-breaking!", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[FeedbackFreddy] I've given feedback multiple times but never heard back. What's the point?", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[RantingRicky] Please add more server capacity. The lag is unbearable during peak hours!", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[FussyFiona] The game crashes whenever I try to enter a specific area. It's frustrating!", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[DisappointedDerek] I reported an exploit but it's still being abused. Why no action?", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[LaggyLarry] The server performance is terrible! It's ruining the gameplay experience.", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[GripeyGabby] I've encountered the same bug for weeks now. When will it be fixed?", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[SkepticalSally] How about adding a feature to auto-sort inventory? It would save a lot of time.", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[AnxiousAndy] NPCs are spawning inside walls, making quests impossible to complete.", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[GrumblingGary] Lack of communication about bug fixes is frustrating. Are devs even listening?", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[UnhappyUrsula] Can we get more frequent updates on bug fixes and patch notes?", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[WhinyWendy] The game freezes randomly, forcing me to restart. It's ruining my experience.", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[GrouchyGreg] Bugs reported months ago are still present. What's being done about them?", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[BuggyBobby] Dialogue options are glitched, making it impossible to progress in quests.", color: SYSTEM_COLOR },
+        { name: SYSTEM_NAME, message: "[SnippySamantha] Feedback seems to be ignored. Is anyone even reading it?", color: SYSTEM_COLOR },
+    ];
 </script>
 
 <Section id="issues-webhooks" color="#7289DA" title={`Long gone are the days of<br><span class="highlight">Discord webhooks.</span>`} description="Using Discord webhooks for feedback poses challenges as your game grows. They struggle to handle increased feedback, making collaboration and insight gathering difficult. Atheria simplifies this process, offering a centralized platform tailored for gaming. Easily collect, organize, and analyze feedback in near real-time, fostering teamwork and improvement. Switch to Atheria to overcome Discord webhook limitations and unlock new opportunities for your game.">
@@ -125,29 +55,7 @@
         </svg>
     </div>
 
-    <div class="w-[50%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div class="scrollAnimation bg-secondary-950 select-none rounded-primary overflow-hidden border-primary z-[1]" bind:this={messagesContainer}>
-            <div class="py-3 flex justify-center items-center gap-2 w-full">
-                <p class="text-3xl text-primary-700">#</p>
-                <p class="text-xl">Developers</p>
-            </div>
+    <Chat name="Developers" visibleMessages={5} style="z-index: 2; top: 18%; left: 12%;" messages={DEVELOPER_CHAT_MESSAGES} />
 
-            <div class="flex flex-col gap-5 justify-center items-center p-5 pt-0">
-                {#each Array(VISIBLE_MESSAGES) as _value, index}
-                    <div class="w-full flex justify-start items-start gap-3 text-left" data-index={index}>
-                        <div class="icon h-12 aspect-square rounded-full" />
-
-                        <div class="w-full overflow-hidden">
-                            <div class="flex items-center gap-3">
-                                <p class="name font-semibold text-lg leading-tight"></p>
-                                <p class="time text-primary-600 text-sm leading-tight"></p>
-                            </div>
-
-                            <p class="message text-primary-600 leading-tight"></p>
-                        </div>
-                    </div>
-                {/each}
-            </div>
-        </div>
-    </div>
+    <Chat name="Feedback" visibleMessages={5} style="z-index: 1; bottom: 18%; right: 0%;" messages={FEEDBACK_CHAT_MESSAGES} />
 </Section>
