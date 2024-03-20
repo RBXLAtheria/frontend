@@ -31,7 +31,7 @@
 
     :global(.section div p .highlight) {
         color: var(--sectionColor);
-        text-shadow: var(--sectionColorTransparent) 0 0 100px;
+        text-shadow: var(--sectionColorTransparent) 0 0 65px;
     }
 
     :global(.float) {
