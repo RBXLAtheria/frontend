@@ -77,8 +77,7 @@
     }
 
     onMount(() => {
-        const wordContainer: HTMLSpanElement = wordsContainer.querySelector(`span[data-index="0"]`)!;
-        wordsContainer.style.width = `${wordContainer.clientWidth}px`;
+        wordsContainer.style.width = `${wordsContainer.querySelector(`span[data-index="0"]`)!.clientWidth}px`;
 
         const cycleInterval: number = setInterval(nextWord, 5000);
         nextWord();
