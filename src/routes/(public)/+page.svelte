@@ -21,6 +21,14 @@
 <IssuesOrganization />
 
 <style lang="postcss">
+    :global(main) {
+        background-image: radial-gradient(rgb(10, 10, 10) 10%, transparent 10%), radial-gradient(rgb(10, 10, 10) 10%, transparent 10%);
+        background-position:
+            0px 0px,
+            8px 8px;
+        background-size: 16px 16px;
+    }
+
     :global(.section div p .highlight) {
         color: var(--sectionColor);
         text-shadow: var(--sectionColorTransparent) 0 0 100px;
