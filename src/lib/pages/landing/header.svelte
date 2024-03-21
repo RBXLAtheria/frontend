@@ -2,7 +2,7 @@
     let showMenu: boolean = false;
 </script>
 
-<header class="absolute top-0 left-0 w-full z-10 text-primary transition-all duration-300 px-[20%] py-8 {showMenu ? 'backdrop-blur-md backdrop-brightness-[0.15]' : ''}">
+<header class="absolute top-0 left-0 w-full z-10 text-primary transition-all duration-300 px-10 md:px-[20%] py-8 {showMenu ? 'backdrop-blur-md backdrop-brightness-[0.15]' : ''}">
     <div class="flex justify-between items-center relative">
         <div class="flex justify-center items-center gap-1">
             <p class="text-2xl font-semibold">Atheria</p>

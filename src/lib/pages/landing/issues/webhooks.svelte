@@ -65,14 +65,14 @@
 </script>
 
 <Section id="issues-webhooks" color="#7289DA" title={`Long gone are the days of<br><span class="highlight">Discord webhooks.</span>`} description="Using Discord webhooks for feedback poses challenges as your game grows. They struggle to handle increased feedback, making collaboration and insight gathering difficult. Atheria simplifies this process, offering a centralized platform tailored for gaming. Easily collect, organize, and analyze feedback in near real-time, fostering teamwork and improvement. Switch to Atheria to overcome Discord webhook limitations and unlock new opportunities for your game.">
-    <div class="w-[80%] h-[70%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div class="w-[80%] h-[70%] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:text-lg">
         <svg class="h-16 aspect-square fill-[--sectionColor]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M5.507 4.048A3 3 0 0 1 7.785 3h8.43a3 3 0 0 1 2.278 1.048l1.722 2.008A4.533 4.533 0 0 0 19.5 6h-15c-.243 0-.482.02-.715.056l1.722-2.008Z" />
             <path fill-rule="evenodd" d="M1.5 10.5a3 3 0 0 1 3-3h15a3 3 0 1 1 0 6h-15a3 3 0 0 1-3-3Zm15 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm2.25.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM4.5 15a3 3 0 1 0 0 6h15a3 3 0 1 0 0-6h-15Zm11.25 3.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM19.5 18a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" clip-rule="evenodd" />
         </svg>
     </div>
 
-    <div class="w-full h-[85vh] lg:h-full">
+    <div class="w-full h-fit md:h-[85vh] lg:h-full">
         <Chat name="Developers" messages={DEVELOPER_CHAT_MESSAGES} {currentTime} />
 
         <Chat name="Feedback" speed={1000} messages={FEEDBACK_CHAT_MESSAGES} {currentTime} />
@@ -80,16 +80,29 @@
 </Section>
 
 <style lang="postcss">
+    :global(#section-issues-webhooks .chat[data-name="Developers"]),
+    :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
+        @apply static w-full px-0 sm:px-[15%] md:px-0 md:w-[50%] md:absolute md:!mt-0;
+    }
+
     :global(#section-issues-webhooks .chat[data-name="Developers"]) {
-        z-index: 2;
-        left: 3%;
-        top: 8%;
+        @apply mt-16 z-[2];
     }
 
     :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
-        z-index: 1;
-        right: 3%;
-        bottom: 8%;
+        @apply mt-4 z-[1];
+    }
+
+    @media (min-width: 768px) {
+        :global(#section-issues-webhooks .chat[data-name="Developers"]) {
+            left: 3%;
+            top: 8%;
+        }
+
+        :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
+            right: 3%;
+            bottom: 8%;
+        }
     }
 
     @media (min-width: 1024px) {

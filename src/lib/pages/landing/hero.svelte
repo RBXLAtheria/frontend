@@ -90,7 +90,7 @@
 
 <div class="w-full h-screen relative [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:w-full [&>div]:h-full" style="--wordColor: {WORDS[0].color};" bind:this={contentContainer}>
     <div class="flex flex-col gap-7 md:gap-10 items-center justify-center z-[1]">
-        <h1 class="flex flex-col justify-center items-center text-4xl md:text-5xl lg:text-6xl font-semibold md:font-bold tracking-tight select-none">
+        <h1 class="flex flex-col justify-center items-center text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight select-none">
             <span class="w-full flex justify-center">
                 <div class="w-[303.59px] relative" bind:this={wordsContainer}>
                     {#each WORDS as word, index}

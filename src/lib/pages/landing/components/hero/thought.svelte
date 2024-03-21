@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { animate } from "motion";
+    import { animate, type AnimationControls } from "motion";
     import { easeInOutCubic } from "$lib/easings";
 
     export let style: string;
@@ -10,10 +10,11 @@
 
     let thoughtContainer: HTMLDivElement;
 
-    onMount(() => {
+    onMount(async () => {
+        let thoughtContainerWidthProperty: string = thoughtContainer.style.width;
         let thoughtContainerWidth: number = thoughtContainer.clientWidth;
 
-        animate(
+        const introAnimation: AnimationControls = animate(
             thoughtContainer,
             {
                 opacity: [0, 1],
@@ -25,6 +26,10 @@
                 delay: delay / 2,
             }
         );
+
+        await introAnimation.finished;
+
+        thoughtContainer.style.width = thoughtContainerWidthProperty;
     });
 </script>
 

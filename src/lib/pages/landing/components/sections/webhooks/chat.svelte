@@ -87,7 +87,7 @@
     });
 </script>
 
-<div class="chat w-[50%] absolute" data-name={name}>
+<div class="chat" data-name={name}>
     <div class="scrollAnimation bg-secondary-950 select-none rounded-primary overflow-hidden border-primary shadow-xl" bind:this={chatContainer}>
         <div class="py-3 flex justify-center items-center gap-2 w-full">
             <p class="text-3xl text-primary-700">#</p>
