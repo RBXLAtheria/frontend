@@ -11,7 +11,7 @@
     const SECTION_FADE_ANIMATION_OPTIONS: AnimationOptions = {
         duration: 1,
         easing: [0.17, 0.55, 0.55, 1],
-        delay: stagger(0.3),
+        delay: stagger(0.15),
     };
 
     onMount(() => {
