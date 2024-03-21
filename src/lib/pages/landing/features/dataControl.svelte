@@ -2,6 +2,7 @@
     import Section from "../components/section.svelte";
 </script>
 
+<!--https://www.youtube.com/watch?v=UgUQSm2JG6Y-->
 <Section id="features-dataControl" color="#E6BE8A" title={`Step into control,<br><span class="highlight">say goodbye to data concerns.</span>`} description="Managing user feedback becomes daunting as your game expands. Existing systems struggle to scale, hindering collaboration and insight gathering. However with Atheria, you can seamlessly collect, organize, and analyze feedback in near real-time, fostering collaboration and driving improvement. Switch to Atheria to overcome organization challenges and unlock unlock new opportunities for your game.">
     <svg class="h-[15%] aspect-square fill-[--sectionColor] stroke-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[1]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" />
