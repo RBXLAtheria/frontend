@@ -59,7 +59,7 @@
 
 @layer base {
     body {
-        @apply bg-primary text-primary text-center font-balooBhaijaan2 overflow-hidden;
+        @apply overflow-hidden bg-primary text-center font-balooBhaijaan2 text-primary;
     }
 
     .pageViewport {
@@ -76,10 +76,10 @@
 @layer components {
     button.primary,
     a.primary {
-        @apply border-primary font-semibold rounded-primary px-6 py-3 backdrop-blur-md bg-button-primary bg-opacity-25 transition-[border-radius] duration-300 hover:rounded-hover;
+        @apply rounded-primary border-primary bg-button-primary bg-opacity-25 px-6 py-3 font-semibold backdrop-blur-md transition-[border-radius] duration-300 hover:rounded-hover;
     }
 
     a.secondary {
-        @apply font-semibold px-6 py-3;
+        @apply px-6 py-3 font-semibold;
     }
 }

@@ -85,13 +85,13 @@
     });
 </script>
 
-<div class="w-full h-screen relative [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:w-full [&>div]:h-full" style="--wordColor: {WORDS[0].color};" bind:this={contentContainer}>
-    <div class="flex flex-col gap-7 md:gap-10 items-center justify-center z-[1]">
-        <h1 class="flex flex-col justify-center items-center text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight select-none">
-            <span class="w-full flex justify-center">
-                <div class="w-[303.59px] relative" bind:this={wordsContainer}>
+<div class="relative h-screen w-full [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:h-full [&>div]:w-full" style="--wordColor: {WORDS[0].color};" bind:this={contentContainer}>
+    <div class="z-[1] flex flex-col items-center justify-center gap-7 md:gap-10">
+        <h1 class="flex select-none flex-col items-center justify-center text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+            <span class="flex w-full justify-center">
+                <div class="relative w-[303.59px]" bind:this={wordsContainer}>
                     {#each WORDS as word, index}
-                        <span class="w-fit absolute top-0 left-0 {index !== 0 ? 'hidden' : ''}" style="color: {word.color}; text-shadow: {word.color}80 0 0 100px;" data-index={index}>
+                        <span class="absolute left-0 top-0 w-fit {index !== 0 ? 'hidden' : ''}" style="color: {word.color}; text-shadow: {word.color}80 0 0 100px;" data-index={index}>
                             {#each [...word.text.split(""), "&nbsp;"] as letter}
                                 <span>{@html letter}</span>
                             {/each}
@@ -104,10 +104,10 @@
             <span><span class="inline-block sm:hidden">feedback</span> with Atheria.</span>
         </h1>
 
-        <p class="text-lg md:text-xl max-w-[80%] md:max-w-[80%] lg:max-w-3xl">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
+        <p class="max-w-[80%] text-lg md:max-w-[80%] md:text-xl lg:max-w-3xl">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
 
-        <div class="flex justify-center items-center gap-2">
-            <a class="primary matchHeroColor !transition-[border-radius,border-color] !bg-black !border-[var(--wordColor)]" href="/get-started">Get started</a>
+        <div class="flex items-center justify-center gap-2">
+            <a class="primary matchHeroColor !border-[var(--wordColor)] !bg-black !transition-[border-radius,border-color]" href="/get-started">Get started</a>
             <a class="secondary" href="#b">Learn more</a>
         </div>
     </div>
@@ -126,6 +126,6 @@
 
 <style lang="postcss">
     :global(.matchHeroColor) {
-        @apply ease-cubic transition-colors duration-500;
+        @apply transition-colors duration-500 ease-cubic;
     }
 </style>

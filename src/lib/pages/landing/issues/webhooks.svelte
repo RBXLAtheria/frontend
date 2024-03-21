@@ -65,7 +65,7 @@
 </script>
 
 <Section id="issues-webhooks" color="#7289DA" title={`Long gone are the days of<br><span class="highlight">Discord webhooks.</span>`} description="Using Discord webhooks for feedback poses challenges as your game grows. They struggle to handle increased feedback, making collaboration and insight gathering difficult. Atheria simplifies this process, offering a centralized platform tailored for gaming. Easily collect, organize, and analyze feedback in near real-time, fostering teamwork and improvement. Switch to Atheria to overcome Discord webhook limitations and unlock new opportunities for your game.">
-    <div class="w-full h-fit md:h-[85vh] lg:h-full">
+    <div class="h-fit w-full md:h-[85vh] lg:h-full">
         <Chat name="Developers" messages={DEVELOPER_CHAT_MESSAGES} {currentTime} />
 
         <Chat name="Feedback" speed={1000} messages={FEEDBACK_CHAT_MESSAGES} {currentTime} />
@@ -75,15 +75,15 @@
 <style lang="postcss">
     :global(#section-issues-webhooks .chat[data-name="Developers"]),
     :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
-        @apply static w-full px-0 sm:px-[15%] md:px-0 md:w-[50%] md:absolute md:!mt-0;
+        @apply static w-full px-0 sm:px-[15%] md:absolute md:!mt-0 md:w-[50%] md:px-0;
     }
 
     :global(#section-issues-webhooks .chat[data-name="Developers"]) {
-        @apply mt-16 z-[2];
+        @apply z-[2] mt-16;
     }
 
     :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
-        @apply mt-4 z-[1];
+        @apply z-[1] mt-4;
     }
 
     @media (min-width: 768px) {

@@ -89,24 +89,24 @@
 </script>
 
 <div class="chat" data-name={name}>
-    <div class="scrollAnimation fromRight bg-secondary-950 select-none rounded-primary overflow-hidden border-primary shadow-xl" bind:this={chatContainer}>
-        <div class="py-3 flex justify-center items-center gap-2 w-full">
+    <div class="scrollAnimation fromRight select-none overflow-hidden rounded-primary border-primary bg-secondary-950 shadow-xl" bind:this={chatContainer}>
+        <div class="flex w-full items-center justify-center gap-2 py-3">
             <p class="text-3xl text-primary-700">#</p>
             <p class="text-xl">{name}</p>
         </div>
 
-        <div class="flex flex-col gap-5 justify-center items-center p-5 pt-0">
+        <div class="flex flex-col items-center justify-center gap-5 p-5 pt-0">
             {#each Array(VISIBLE_MESSAGES) as _value, index}
-                <div class="w-full flex justify-start items-start gap-3 text-left" data-index={index}>
-                    <div class="icon h-12 aspect-square rounded-full" />
+                <div class="flex w-full items-start justify-start gap-3 text-left" data-index={index}>
+                    <div class="icon aspect-square h-12 rounded-full" />
 
                     <div class="w-full overflow-hidden">
                         <div class="flex items-center gap-3">
-                            <p class="name font-semibold text-lg leading-tight"></p>
-                            <p class="time text-primary-600 text-sm leading-tight"></p>
+                            <p class="name text-lg font-semibold leading-tight"></p>
+                            <p class="time text-sm leading-tight text-primary-600"></p>
                         </div>
 
-                        <p class="message text-primary-600 leading-tight"></p>
+                        <p class="message leading-tight text-primary-600"></p>
                     </div>
                 </div>
             {/each}

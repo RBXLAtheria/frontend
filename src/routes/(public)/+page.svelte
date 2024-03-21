@@ -69,7 +69,7 @@
     <title>Manage your user feedback with Atheria</title>
 </svelte:head>
 
-<div class="h-screen relative">
+<div class="relative h-screen">
     <Header />
     <Hero />
 </div>

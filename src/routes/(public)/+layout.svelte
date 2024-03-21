@@ -5,8 +5,8 @@
     let contentContainer: HTMLElement;
 </script>
 
-<div class="pageViewport w-full h-screen overflow-x-hidden" bind:this={viewportContainer}>
-    <main class="w-full h-fit" bind:this={contentContainer}>
+<div class="pageViewport h-screen w-full overflow-x-hidden" bind:this={viewportContainer}>
+    <main class="h-fit w-full" bind:this={contentContainer}>
         <slot />
     </main>
 </div>

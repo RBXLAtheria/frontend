@@ -33,6 +33,6 @@
     });
 </script>
 
-<div class="float matchHeroColor absolute h-10 rounded-full bg-[--wordColor] flex justify-center items-center" style={style.concat(`opacity: 0; --delay: ${delay}s; --rotation1: ${rotation1}deg; --rotation2: ${rotation2}deg;`)} bind:this={thoughtContainer}>
+<div class="float matchHeroColor absolute flex h-10 items-center justify-center rounded-full bg-[--wordColor]" style={style.concat(`opacity: 0; --delay: ${delay}s; --rotation1: ${rotation1}deg; --rotation2: ${rotation2}deg;`)} bind:this={thoughtContainer}>
     <slot />
 </div>
