@@ -52,7 +52,7 @@
     $: currentTime = new Date();
 
     onMount(() => {
-        let timeUpdateInterval: number = setInterval(() => {
+        const timeUpdateInterval: number = setInterval(() => {
             let newTime: Date = new Date(lastTime.getTime() + 60000);
             lastTime = currentTime;
             currentTime = newTime;

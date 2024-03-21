@@ -6,7 +6,13 @@
     import IssuesOrganization from "$lib/pages/landing/issues/organization.svelte";
     import FeaturesDataControl from "$lib/pages/landing/features/dataControl.svelte";
     import { onMount } from "svelte";
-    import { inView, animate, stagger } from "motion";
+    import { inView, animate, stagger, type AnimationOptions, type AnimationControls } from "motion";
+
+    const SECTION_FADE_ANIMATION_OPTIONS: AnimationOptions = {
+        duration: 1,
+        easing: [0.17, 0.55, 0.55, 1],
+        delay: stagger(0.3),
+    };
 
     onMount(() => {
         const sections: NodeListOf<HTMLDivElement> = document.querySelectorAll(".section");
@@ -15,27 +21,38 @@
             const scrollAnimationObjects: NodeListOf<HTMLElement> = section.querySelectorAll(".scrollAnimation");
 
             scrollAnimationObjects.forEach((element: HTMLElement) => {
+                let xPosition: number = element.classList.contains("fromLeft") ? -20 : 20;
                 element.style.opacity = "0";
-                element.style.transform = "translateX(-20px) translateY(20px)";
+                element.style.transform = `translateX(${xPosition}px) translateY(20px)`;
             });
         });
 
         const stopSectionObserver: VoidFunction = inView(
             sections,
             (info: IntersectionObserverEntry) => {
-                animate(
-                    info.target.querySelectorAll(".scrollAnimation"),
+                const fromLeftAnimation: AnimationControls = animate(
+                    info.target.querySelectorAll(".scrollAnimation.fromLeft"),
                     {
                         opacity: [0, 1],
                         x: ["-20px", "0px"],
                         y: ["20px", "0px"],
                     },
-                    {
-                        duration: 1,
-                        easing: [0.17, 0.55, 0.55, 1],
-                        delay: stagger(0.3),
-                    }
+                    SECTION_FADE_ANIMATION_OPTIONS
                 );
+
+                (async () => {
+                    await fromLeftAnimation.finished;
+
+                    animate(
+                        info.target.querySelectorAll(".scrollAnimation.fromRight"),
+                        {
+                            opacity: [0, 1],
+                            x: ["20px", "0px"],
+                            y: ["20px", "0px"],
+                        },
+                        SECTION_FADE_ANIMATION_OPTIONS
+                    );
+                })();
             },
             {
                 margin: "0px 0px -400px 0px",

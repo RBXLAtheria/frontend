@@ -2,9 +2,15 @@
     import Rating from "./components/hero/rating.svelte";
     import Thought from "./components/hero/thought.svelte";
     import { onMount } from "svelte";
-    import { animate, timeline, stagger, spring, type EasingGenerator, type AnimationControls, type TimelineDefinition } from "motion";
+    import { animate, timeline, stagger, spring, type EasingGenerator, type AnimationControls, type TimelineDefinition, type AnimationOptions } from "motion";
     import { easeInOutCubic } from "$lib/easings";
 
+    const WORD_CONTAINER_ANIMATION_SPRING: EasingGenerator = spring({ stiffness: 50, mass: 1, damping: 15, velocity: 0 });
+    const LETTER_ANIMATION_OPTIONS: AnimationOptions = {
+        easing: easeInOutCubic,
+        duration: 0.2,
+        delay: stagger(0.1),
+    };
     const WORDS: { text: string; color: string }[] = [
         { text: "Streamline", color: "#7FFFD4" },
         { text: "Optimize", color: "#98FB98" },
@@ -18,7 +24,6 @@
     let contentContainer: HTMLDivElement;
     let wordsContainer: HTMLDivElement;
     let currentWord: number = -1;
-    let wordContainerAnimationSpring: EasingGenerator = spring({ stiffness: 50, mass: 1, damping: 15, velocity: 0 });
 
     async function nextWord() {
         let lastWord: number = currentWord;
@@ -32,11 +37,7 @@
             {
                 opacity: [1, 0],
             },
-            {
-                easing: easeInOutCubic,
-                duration: 0.2,
-                delay: stagger(0.1),
-            }
+            LETTER_ANIMATION_OPTIONS
         );
 
         await oldLetterAnimation.finished;
@@ -56,11 +57,7 @@
                 {
                     opacity: [0, 1],
                 },
-                {
-                    easing: easeInOutCubic,
-                    duration: 0.2,
-                    delay: stagger(0.1),
-                },
+                LETTER_ANIMATION_OPTIONS,
             ],
             [
                 wordsContainer,
@@ -69,7 +66,7 @@
                 },
                 {
                     at: "<",
-                    easing: wordContainerAnimationSpring,
+                    easing: WORD_CONTAINER_ANIMATION_SPRING,
                     duration: 0.5 * (newWordContainer.querySelectorAll("span").length - 1),
                 },
             ],
