@@ -89,7 +89,7 @@
 </script>
 
 <div class="chat" data-name={name}>
-    <div class="scrollAnimation fromRight select-none overflow-hidden rounded-primary border-primary bg-secondary-950 shadow-xl" bind:this={chatContainer}>
+    <div class="scrollAnimation fromRight select-none overflow-hidden rounded-primary border-primary bg-secondary-950" bind:this={chatContainer}>
         <div class="flex w-full items-center justify-center gap-2 py-3">
             <p class="text-3xl text-primary-700">#</p>
             <p class="text-xl">{name}</p>

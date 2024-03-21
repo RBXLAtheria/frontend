@@ -79,7 +79,7 @@
     }
 
     :global(#section-issues-webhooks .chat[data-name="Developers"]) {
-        @apply z-[2] mt-16;
+        @apply z-[2] mt-16 md:shadow-xl;
     }
 
     :global(#section-issues-webhooks .chat[data-name="Feedback"]) {
