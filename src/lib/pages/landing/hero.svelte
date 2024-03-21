@@ -50,6 +50,7 @@
         newWordContainer.style.display = "flex";
 
         contentContainer.style.setProperty("--wordColor", WORDS[currentWord].color);
+        contentContainer.style.setProperty("--buttonColor", `${WORDS[currentWord].color}26`);
 
         timeline([
             [
@@ -85,7 +86,7 @@
     });
 </script>
 
-<div class="relative h-screen w-full [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:h-full [&>div]:w-full" style="--wordColor: {WORDS[0].color};" bind:this={contentContainer}>
+<div class="relative h-screen w-full [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:h-full [&>div]:w-full" style="--wordColor: {WORDS[0].color}; --buttonColor: {WORDS[0].color}26" bind:this={contentContainer}>
     <div class="z-[1] flex flex-col items-center justify-center gap-7 md:gap-10">
         <h1 class="flex select-none flex-col items-center justify-center text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             <span class="flex w-full justify-center">
@@ -107,7 +108,7 @@
         <p class="max-w-[80%] text-lg md:max-w-[80%] md:text-xl lg:max-w-3xl">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
 
         <div class="flex items-center justify-center gap-2">
-            <a class="primary matchHeroColor !border-[var(--wordColor)] !bg-black !transition-[border-radius,border-color]" href="/get-started">Get started</a>
+            <a class="matchHeroColor primary !border-[var(--wordColor)] !bg-[--buttonColor] !transition-[border-radius,border-color] !duration-300" href="/get-started">Get started</a>
             <a class="secondary" href="#b">Learn more</a>
         </div>
     </div>
