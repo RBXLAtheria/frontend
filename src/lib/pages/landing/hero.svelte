@@ -222,6 +222,7 @@
         }
 
         :global(#hero .rating[data-id="2"]) {
+            bottom: 17%;
             left: 11.4%;
         }
 
