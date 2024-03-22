@@ -3,7 +3,7 @@
     import { animate, type AnimationControls } from "motion";
     import { easeInOutCubic } from "$lib/easings";
 
-    export let style: string;
+    export let id: string = "";
     export let delay: number = 0;
     export let rotation1: number = 0;
     export let rotation2: number = 0;
@@ -33,6 +33,6 @@
     });
 </script>
 
-<div class="float matchHeroColor absolute flex h-10 items-center justify-center rounded-full bg-[--wordColor]" style={style.concat(`opacity: 0; --delay: ${delay}s; --rotation1: ${rotation1}deg; --rotation2: ${rotation2}deg;`)} bind:this={thoughtContainer}>
+<div class="thought float matchHeroColor absolute flex h-10 items-center justify-center rounded-full bg-[--wordColor] opacity-0" style={`--delay: ${delay}s; --rotation1: ${rotation1}deg; --rotation2: ${rotation2}deg;`} data-id={id} bind:this={thoughtContainer}>
     <slot />
 </div>

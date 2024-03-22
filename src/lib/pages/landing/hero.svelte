@@ -86,7 +86,7 @@
     });
 </script>
 
-<div class="relative h-screen w-full [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:h-full [&>div]:w-full" style="--wordColor: {WORDS[0].color}; --buttonColor: {WORDS[0].color}26" bind:this={contentContainer}>
+<div class="relative h-screen w-full [&>div]:absolute [&>div]:left-0 [&>div]:top-0 [&>div]:h-full [&>div]:w-full" id="hero" style="--wordColor: {WORDS[0].color}; --buttonColor: {WORDS[0].color}26" bind:this={contentContainer}>
     <div class="z-[1] flex flex-col items-center justify-center gap-7 md:gap-10">
         <h1 class="flex select-none flex-col items-center justify-center text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
             <span class="flex w-full justify-center">
@@ -105,7 +105,7 @@
             <span><span class="inline-block sm:hidden">feedback</span> with Atheria.</span>
         </h1>
 
-        <p class="max-w-[80%] text-lg md:max-w-[80%] md:text-xl lg:max-w-3xl">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
+        <p class="w-full px-10 text-lg md:text-xl lg:w-fit lg:max-w-3xl lg:px-0">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
 
         <div class="flex items-center justify-center gap-2">
             <a class="matchHeroColor primary !border-[var(--wordColor)] !bg-[--buttonColor] !transition-[border-radius,border-color] !duration-300" href="/get-started">Get started</a>
@@ -114,19 +114,143 @@
     </div>
 
     <div>
-        <Rating rating={4} delay={1} size={1} style="top: 11.5%; left: 21.8%;;" />
-        <Rating rating={3} delay={0} size={1.2} style="top: 79%; left: 11.4%;" />
-        <Rating rating={2} delay={2} size={0.9} style="top: 77.4%; right: 21%;" />
-        <Rating rating={5} delay={0.25} size={1.4} style="top: 15%; right: 15.2%;" />
+        <Rating id="1" rating={4} delay={1} />
+        <Rating id="2" rating={3} delay={0} />
+        <Rating id="3" rating={2} delay={2} />
+        <Rating id="4" rating={5} delay={0.25} />
 
-        <Thought delay={1} rotation1={1} rotation2={-0.5} style="width: 20%; top: 20%; left: 40%;" />
-        <Thought delay={2} rotation1={-1} rotation2={1} style="width: 13%; top: 62.3%; left: 5%;" />
-        <Thought delay={3} rotation1={-2} rotation2={2} style="width: 8%; top: 53.3%; right: 5%;" />
+        <Thought id="1" delay={1} rotation1={1} rotation2={-0.5} />
+        <Thought id="2" delay={2} rotation1={-1} rotation2={1} />
+        <Thought id="3" delay={3} rotation1={-2} rotation2={2} />
     </div>
 </div>
 
 <style lang="postcss">
     :global(.matchHeroColor) {
         @apply transition-colors duration-500 ease-cubic;
+    }
+
+    :global(#hero .rating[data-id="1"]) {
+        --size: 0.8;
+        top: 10%;
+        left: 11%;
+    }
+
+    :global(#hero .rating[data-id="2"]) {
+        --size: 1;
+        bottom: 8%;
+        left: 20%;
+    }
+
+    :global(#hero .rating[data-id="3"]) {
+        --size: 1;
+        bottom: 25.6%;
+        right: 8%;
+    }
+
+    :global(#hero .rating[data-id="4"]) {
+        --size: 1.2;
+        top: 16%;
+        right: 6.2%;
+    }
+
+    :global(#hero .thought[data-id="1"]) {
+        width: 60%;
+        top: 23.5%;
+        left: 20%;
+    }
+
+    :global(#hero .thought[data-id="2"]) {
+        width: 38%;
+        bottom: 18%;
+        left: 12%;
+    }
+
+    :global(#hero .thought[data-id="3"]) {
+        @apply hidden;
+    }
+
+    @media (min-width: 640px) {
+        :global(#hero .rating[data-id="1"]) {
+            --size: 1;
+            top: 12.5%;
+            left: 11%;
+        }
+
+        :global(#hero .rating[data-id="2"]) {
+            --size: 1.2;
+            bottom: 10%;
+            left: 11.4%;
+        }
+
+        :global(#hero .rating[data-id="3"]) {
+            --size: 1;
+            bottom: 22.6%;
+            right: 18%;
+        }
+
+        :global(#hero .rating[data-id="4"]) {
+            --size: 1.4;
+            top: 14%;
+            right: 6.2%;
+        }
+
+        :global(#hero .thought[data-id="1"]) {
+            width: 35%;
+            top: 23.5%;
+            left: 32.5%;
+        }
+
+        :global(#hero .thought[data-id="2"]) {
+            width: 18%;
+            bottom: 19%;
+            left: 8%;
+        }
+
+        :global(#hero .thought[data-id="3"]) {
+            width: 12%;
+            top: 62.3%;
+            right: 5%;
+            @apply block;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        :global(#hero .rating[data-id="1"]) {
+            top: 11.5%;
+            left: 21.8%;
+        }
+
+        :global(#hero .rating[data-id="2"]) {
+            left: 11.4%;
+        }
+
+        :global(#hero .rating[data-id="3"]) {
+            --size: 0.95;
+            bottom: 21.6%;
+            right: 20%;
+        }
+
+        :global(#hero .rating[data-id="4"]) {
+            top: 15%;
+            right: 15.2%;
+        }
+
+        :global(#hero .thought[data-id="1"]) {
+            width: 20%;
+            top: 20%;
+            left: 40%;
+        }
+
+        :global(#hero .thought[data-id="2"]) {
+            width: 13%;
+            top: 62.3%;
+            left: 5%;
+        }
+
+        :global(#hero .thought[data-id="3"]) {
+            width: 8%;
+            top: 53.3%;
+        }
     }
 </style>
