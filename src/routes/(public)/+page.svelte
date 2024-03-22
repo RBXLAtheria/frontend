@@ -90,7 +90,7 @@
         background-size: 16px 16px;
     }
 
-    :global(.section div p .highlight) {
+    :global(.section .highlight) {
         color: var(--sectionColor);
         text-shadow: var(--sectionShadowColor) 0 0 65px;
     }
