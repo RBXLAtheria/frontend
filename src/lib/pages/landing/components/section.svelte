@@ -11,7 +11,7 @@
 <div class="section relative flex h-fit min-h-screen w-full flex-col items-center justify-center px-10 lg:h-screen lg:flex-row lg:justify-between" style="--sectionColor: {color}; --sectionTagColor: {color}40; --sectionButtonColor: {color}21; --sectionShadowColor: {color}80;" id="section-{id}">
     <div class="flex h-full w-full flex-col items-center justify-center gap-5 text-center lg:w-[50%] lg:items-start lg:gap-7 lg:pl-[10%] lg:text-left 2xl:pl-[15%]">
         <div class="relative w-full">
-            <div class="scrollAnimation fromLeft absolute bottom-full mb-3 flex gap-2">
+            <div class="scrollAnimation fromLeft absolute bottom-full mb-3 flex w-full justify-center gap-2 lg:w-fit">
                 {#each tags as tag}
                     <p class="rounded-full border-primary border-[--sectionColor] bg-[--sectionTagColor] px-3 py-1.5 text-sm font-medium">{tag}</p>
                 {/each}
