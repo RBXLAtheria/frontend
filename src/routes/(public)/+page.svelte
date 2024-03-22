@@ -78,12 +78,14 @@
     <Hero />
 </div>
 
-<Stats />
+<div class="flex w-full flex-col gap-28 md:gap-0">
+    <Stats />
 
-<IssuesWebhooks />
-<IssuesOrganization />
+    <IssuesWebhooks />
+    <IssuesOrganization />
 
-<FeaturesDataControl />
+    <FeaturesDataControl />
+</div>
 
 <style lang="postcss">
     :global(main) {

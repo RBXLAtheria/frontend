@@ -105,7 +105,7 @@
             <span><span class="inline-block sm:hidden">feedback</span> with Atheria.</span>
         </h1>
 
-        <p class="w-full px-10 text-lg md:text-xl lg:w-fit lg:max-w-3xl lg:px-0">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
+        <p class="w-full px-5 text-lg sm:px-10 md:text-xl lg:w-fit lg:max-w-3xl lg:px-0">Revolutionize Roblox game development with Atheria. Easily collaborate with users, manage feedback effortlessly, and elevate player engagement to new levels.</p>
 
         <div class="flex items-center justify-center gap-2">
             <a class="matchHeroColor primary !border-[var(--wordColor)] !bg-[--buttonColor] !transition-[border-radius,border-color] !duration-300" href="/get-started">Get started</a>
