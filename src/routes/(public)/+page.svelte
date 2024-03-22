@@ -97,7 +97,6 @@
 
     :global(.float) {
         rotate: var(--rotation1);
-        will-change: translate rotate;
         animation: float infinite 6s ease-in-out var(--delay);
     }
 
