@@ -43,8 +43,12 @@
                 (async () => {
                     await fromLeftAnimation.finished;
 
+                    const scrollAnimationFromRightObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromRight");
+
+                    if (scrollAnimationFromRightObjects.length <= 0) return;
+
                     animate(
-                        info.target.querySelectorAll(".scrollAnimation.fromRight"),
+                        scrollAnimationFromRightObjects,
                         {
                             opacity: [0, 1],
                             x: ["20px", "0px"],
