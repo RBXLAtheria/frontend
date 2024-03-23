@@ -21,8 +21,11 @@
             const scrollAnimationObjects: NodeListOf<HTMLElement> = section.querySelectorAll(".scrollAnimation");
 
             scrollAnimationObjects.forEach((element: HTMLElement) => {
-                let xPosition: number = element.classList.contains("fromLeft") ? -20 : 20;
                 element.style.opacity = "0";
+
+                if (element.classList.contains("fromOpacity")) return;
+
+                let xPosition: number = element.classList.contains("fromLeft") ? -20 : 20;
                 element.style.transform = `translateX(${xPosition}px) translateY(20px)`;
             });
         });
@@ -45,17 +48,29 @@
 
                     const scrollAnimationFromRightObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromRight");
 
-                    if (scrollAnimationFromRightObjects.length <= 0) return;
+                    if (scrollAnimationFromRightObjects.length > 0) {
+                        animate(
+                            scrollAnimationFromRightObjects,
+                            {
+                                opacity: [0, 1],
+                                x: ["20px", "0px"],
+                                y: ["20px", "0px"],
+                            },
+                            SECTION_FADE_ANIMATION_OPTIONS
+                        );
+                    }
 
-                    animate(
-                        scrollAnimationFromRightObjects,
-                        {
-                            opacity: [0, 1],
-                            x: ["20px", "0px"],
-                            y: ["20px", "0px"],
-                        },
-                        SECTION_FADE_ANIMATION_OPTIONS
-                    );
+                    const scrollAnimationOpacityObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromOpacity");
+
+                    if (scrollAnimationOpacityObjects.length > 0) {
+                        animate(
+                            scrollAnimationOpacityObjects,
+                            {
+                                opacity: [0, 1],
+                            },
+                            SECTION_FADE_ANIMATION_OPTIONS
+                        );
+                    }
                 })();
             },
             {
