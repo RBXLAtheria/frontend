@@ -2,7 +2,7 @@
     import Section from "../components/section.svelte";
 </script>
 
-<Section id="features-dataControl" color="#E6BE8A" title={`Step into control,<br><span class="highlight">say goodbye to data concerns.</span>`} description="Managing user feedback becomes daunting as your game expands. Existing systems struggle to scale, hindering collaboration and insight gathering. However with Atheria, you can seamlessly collect, organize, and analyze feedback in near real-time, fostering collaboration and driving improvement. Switch to Atheria to overcome organization challenges and unlock unlock new opportunities for your game." tags={["features"]}>
+<Section id="features-dataControl" color="#E6BE8A" title={`Step into control,<br><span class="highlight">say goodbye to data concerns.</span>`} description="Atheria seamlessly integrates with Roblox's hosting infrastructure, ensuring your data remains securely stored within Roblox's trusted ecosystem. Our website dashboard and features act solely as a gateway, connecting you directly to your data on Roblox. Plus, when accessing data via the in-game API, no requests are sent to Atheria's servers. With Atheria, take full control of your data without compromise." tags={["features"]}>
     <div class="scrollAnimation fromOpacity absolute right-0 top-1/2 h-full w-[87%] -translate-y-1/2">
         <div class="relative left-1/2 top-1/2 aspect-square h-[55%] -translate-x-1/2 -translate-y-1/2 [&>*]:absolute [&>*]:aspect-square [&>*]:w-24">
             <svg class="left-1/2 top-0 -translate-x-1/2 fill-[--sectionColor]" xmlns="http://www.w3.org/2000/svg" style="--rotation1: 0deg; --rotation2: 0deg; --delay: {Math.random() * 2}s;" viewBox="0 0 24 24">
