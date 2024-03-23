@@ -5,6 +5,7 @@
     import IssuesWebhooks from "$lib/pages/landing/issues/webhooks.svelte";
     import IssuesOrganization from "$lib/pages/landing/issues/organization.svelte";
     import FeaturesDataControl from "$lib/pages/landing/features/dataControl.svelte";
+    import FeaturesExtension from "$lib/pages/landing/features/extension.svelte";
     import { onMount } from "svelte";
     import { inView, animate, stagger, type AnimationOptions, type AnimationControls } from "motion";
 
@@ -33,8 +34,10 @@
         const stopSectionObserver: VoidFunction = inView(
             sections,
             (info: IntersectionObserverEntry) => {
-                const fromLeftAnimation: AnimationControls = animate(
-                    info.target.querySelectorAll(".scrollAnimation.fromLeft"),
+                const scrollAnimationFromLeftObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromLeft");
+
+                animate(
+                    scrollAnimationFromLeftObjects,
                     {
                         opacity: [0, 1],
                         x: ["-20px", "0px"],
@@ -43,12 +46,10 @@
                     SECTION_FADE_ANIMATION_OPTIONS
                 );
 
-                (async () => {
-                    await fromLeftAnimation.finished;
+                const scrollAnimationFromRightObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromRight");
 
-                    const scrollAnimationFromRightObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromRight");
-
-                    if (scrollAnimationFromRightObjects.length > 0) {
+                if (scrollAnimationFromRightObjects.length > 0) {
+                    setTimeout(() => {
                         animate(
                             scrollAnimationFromRightObjects,
                             {
@@ -58,20 +59,25 @@
                             },
                             SECTION_FADE_ANIMATION_OPTIONS
                         );
-                    }
+                    }, 150 * scrollAnimationFromLeftObjects.length);
+                }
 
-                    const scrollAnimationOpacityObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromOpacity");
+                const scrollAnimationOpacityObjects: NodeListOf<HTMLElement> = info.target.querySelectorAll(".scrollAnimation.fromOpacity");
 
-                    if (scrollAnimationOpacityObjects.length > 0) {
-                        animate(
-                            scrollAnimationOpacityObjects,
-                            {
-                                opacity: [0, 1],
-                            },
-                            SECTION_FADE_ANIMATION_OPTIONS
-                        );
-                    }
-                })();
+                if (scrollAnimationOpacityObjects.length > 0) {
+                    setTimeout(
+                        () => {
+                            animate(
+                                scrollAnimationOpacityObjects,
+                                {
+                                    opacity: [0, 1],
+                                },
+                                SECTION_FADE_ANIMATION_OPTIONS
+                            );
+                        },
+                        150 * (scrollAnimationFromLeftObjects.length + scrollAnimationOpacityObjects.length)
+                    );
+                }
             },
             {
                 margin: "0px 0px -400px 0px",
@@ -100,6 +106,7 @@
     <IssuesOrganization />
 
     <FeaturesDataControl />
+    <FeaturesExtension />
 </div>
 
 <style lang="postcss">
