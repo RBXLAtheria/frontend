@@ -8,7 +8,7 @@
 
 <span {id} class="relative" />
 
-<div class="section relative flex h-fit min-h-screen w-full flex-col items-center justify-center px-5 sm:px-10 lg:h-screen lg:flex-row lg:justify-between" style="--sectionColor: {color}; --sectionButtonColor: {color}21; --sectionShadowColor: {color}80;" id="section-{id}">
+<div class="section relative flex h-fit min-h-screen w-full flex-col items-center justify-center px-5 sm:px-10 lg:h-screen lg:flex-row lg:justify-between" style="--sectionColor: {color}; --sectionButtonColor: {color}21; --sectionShadowColor: {color}80; --sectionColorFullyTransparent: {color}00;" id="section-{id}">
     <div class="flex h-full w-full flex-col items-center justify-center gap-5 text-center lg:w-[50%] lg:items-start lg:gap-7 lg:pl-[10%] lg:text-left 2xl:pl-[15%]">
         <div class="relative w-full">
             <div class="scrollAnimation fromLeft absolute bottom-full mb-3 flex w-full justify-center gap-2 lg:w-fit">
