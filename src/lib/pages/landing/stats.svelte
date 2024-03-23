@@ -14,7 +14,7 @@
     <Stat id="fasterResolution" number="30%" name="faster feedback resolution" color="#FF6666">
         {#each Array(4) as _value, quadrant}
             <div class="absolute h-[calc(50%-5%)] w-[calc(50%-5%)]" style="top: calc({25 * (quadrant == 0 || quadrant == 1 ? 0 : 2)}% + {5 * (quadrant == 0 || quadrant == 1 ? 0 : 1)}%); left: calc({25 * (quadrant == 0 || quadrant == 2 ? 0 : 2)}% + {5 * (quadrant == 0 || quadrant == 2 ? 0 : 1)}%);">
-                {#each Array(3) as _value}
+                {#each Array(2) as _value}
                     <svg class="float absolute aspect-square fill-[--sectionColor]" style="width: {Math.random() * 2 + 1.5}rem; {quadrant == 0 || quadrant == 2 ? 'left' : 'right'}: {Math.random() * 100}%; top: {Math.random() * 100}%; --rotation1: 0deg; --rotation2: 0deg; --delay: {Math.random() * 2}s;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
                     </svg>
