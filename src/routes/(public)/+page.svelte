@@ -8,7 +8,7 @@
     import FeaturesDataControl from "$lib/pages/landing/features/dataControl.svelte";
     import FeaturesExtension from "$lib/pages/landing/features/extension.svelte";
     import { onMount } from "svelte";
-    import { inView, animate, stagger, type AnimationOptions, type AnimationControls } from "motion";
+    import { inView, animate, stagger, type AnimationOptions } from "motion";
 
     const SECTION_FADE_ANIMATION_OPTIONS: AnimationOptions = {
         duration: 1,
