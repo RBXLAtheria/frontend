@@ -102,8 +102,10 @@
 <div class="flex w-full flex-col gap-28 md:gap-0">
     <Stats />
 
+    <span id="why" class="relative" />
     <IssuesWebhooks />
 
+    <span id="features" class="relative" />
     <FeaturesOrganization />
     <FeaturesDataControl />
     <FeaturesExtension />

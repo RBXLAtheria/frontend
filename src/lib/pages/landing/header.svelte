@@ -10,7 +10,7 @@
 
         <div class="hidden items-center gap-6 font-semibold text-primary-300 md:flex [&>a]:transition-colors hover:[&>a]:text-primary">
             <a href="/#why">Why</a>
-            <a href="/updates">Updates</a>
+            <a href="/#features">Features</a>
             <a href="/#contact">Contact</a>
 
             <div class="h-5 w-[2px] rounded-full bg-slate-700" />
@@ -37,7 +37,7 @@
     {#if showMenu}
         <div class="flex flex-col items-start justify-center gap-3 py-4 md:hidden">
             <a href="/#why">Why</a>
-            <a href="/updates">Updates</a>
+            <a href="/#features">Features</a>
             <a href="/#contact">Contact</a>
         </div>
     {/if}
