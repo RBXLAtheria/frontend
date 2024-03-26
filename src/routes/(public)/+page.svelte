@@ -1,5 +1,6 @@
 <script lang="ts">
     import Header from "$lib/pages/landing/header.svelte";
+    import Footer from "$lib/pages/landing/footer.svelte";
     import Hero from "$lib/pages/landing/hero.svelte";
     import Stats from "$lib/pages/landing/stats.svelte";
     import IssuesWebhooks from "$lib/pages/landing/issues/webhooks.svelte";
@@ -110,6 +111,8 @@
     <FeaturesDataControl />
     <FeaturesExtension />
 </div>
+
+<Footer />
 
 <style lang="postcss">
     :global(main) {
