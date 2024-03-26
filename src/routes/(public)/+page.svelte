@@ -3,7 +3,7 @@
     import Hero from "$lib/pages/landing/hero.svelte";
     import Stats from "$lib/pages/landing/stats.svelte";
     import IssuesWebhooks from "$lib/pages/landing/issues/webhooks.svelte";
-    import IssuesOrganization from "$lib/pages/landing/issues/organization.svelte";
+    import FeaturesOrganization from "$lib/pages/landing/features/organization.svelte";
     import FeaturesDataControl from "$lib/pages/landing/features/dataControl.svelte";
     import FeaturesExtension from "$lib/pages/landing/features/extension.svelte";
     import { onMount } from "svelte";
@@ -103,8 +103,8 @@
     <Stats />
 
     <IssuesWebhooks />
-    <IssuesOrganization />
 
+    <FeaturesOrganization />
     <FeaturesDataControl />
     <FeaturesExtension />
 </div>
